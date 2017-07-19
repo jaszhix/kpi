@@ -27,7 +27,11 @@ $.ajaxSetup({
 });
 
 if (document.head.querySelector('meta[name=kpi-root-url]')) {
-  ReactDOM.render(<RunRoutes />, el);
+  try {
+    ReactDOM.render(<RunRoutes />, el);
+  } catch(e) {
+    Raven.captureException(e)
+  }
 } else {
   console.error('no kpi-root-url meta tag set. skipping react-router init');
 }

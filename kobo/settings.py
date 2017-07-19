@@ -473,6 +473,8 @@ if 'RAVEN_DSN' in os.environ:
         },
     }
 
+if 'RAVEN_DSN_JS' in os.environ:
+    RAVEN_JS_PUBLIC_KEY = os.environ['RAVEN_DSN_JS']
 
 ''' Try to identify the running codebase. Based upon
 https://github.com/tblobaum/git-rev/blob/master/index.js '''
