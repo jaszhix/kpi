@@ -6,8 +6,10 @@ def external_service_tokens(request):
     out = {}
     if settings.TRACKJS_TOKEN:
         out['trackjs_token'] = settings.TRACKJS_TOKEN
-    if settings.RAVEN_JS_PUBLIC_KEY:
-        out['raven_js_public_key'] = settings.RAVEN_JS_PUBLIC_KEY
+    if settings.RAVEN_JS_CONFIG:
+        out['raven_js_public_key'] = settings.RAVEN_JS_CONFIG['dsn']
+        if 'release' in settings.RAVEN_JS_CONFIG:
+            out['raven_js_release'] = settings.RAVEN_JS_CONFIG['release']
     if settings.GOOGLE_ANALYTICS_TOKEN:
         out['google_analytics_token'] = settings.GOOGLE_ANALYTICS_TOKEN
     if settings.INTERCOM_APP_ID:

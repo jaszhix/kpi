@@ -474,7 +474,14 @@ if 'RAVEN_DSN' in os.environ:
     }
 
 if 'RAVEN_DSN_JS' in os.environ:
-    RAVEN_JS_PUBLIC_KEY = os.environ['RAVEN_DSN_JS']
+    import raven
+    RAVEN_JS_CONFIG = {
+        'dsn': os.environ['RAVEN_DSN_JS'],
+    }
+    try:
+        RAVEN_JS_CONFIG['release'] = raven.fetch_git_sha(BASE_DIR)
+    except raven.exceptions.InvalidGitRepository:
+        pass
 
 ''' Try to identify the running codebase. Based upon
 https://github.com/tblobaum/git-rev/blob/master/index.js '''

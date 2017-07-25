@@ -132,7 +132,8 @@ module.exports = function (options) {
   if (!options.optimize) {
     plugins.push(new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"development"'
+        NODE_ENV: '"development"',
+        KPI_VERSION: JSON.stringify(pkg.version)
       }
     }));
   } else {
@@ -147,7 +148,8 @@ module.exports = function (options) {
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"production"',
+        KPI_VERSION: JSON.stringify(pkg.version)
       }
     }));
     plugins.push(new webpack.NoErrorsPlugin());

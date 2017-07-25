@@ -3,6 +3,16 @@ import $ from 'jquery';
 import cookie from 'react-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Raven from 'raven-js';
+
+if (process.env.NODE_ENV === 'production') {
+  Raven
+    .config(window.ravenJSPublicKey, {
+      environment: process.env.NODE_ENV,
+      release: window.ravenJSRelease || process.env.KPI_VERSION
+    })
+    .install();
+}
 
 require('../scss/main.scss');
 
